@@ -17,6 +17,7 @@ namespace ApnsPHP\Message;
  * @author (C) 2010 Aldo Armiento (aldo.armiento@gmail.com)
  * @version $Id$
  */
+use ApnsPHP\Message;
 
 /**
  * The Push Notification Custom Message.
@@ -27,7 +28,7 @@ namespace ApnsPHP\Message;
  * @ingroup ApnsPHP_Message
  * @see http://tinyurl.com/ApplePushNotificationPayload
  */
-class Custom extends \ApnsPHP\Message
+class Custom extends Message
 {
 	/**
 	 * @var string The "View" button title.

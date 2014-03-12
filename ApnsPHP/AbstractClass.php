@@ -139,7 +139,7 @@ abstract class AbstractClass
 	 * @throws \ApnsPHP\Exception if the environment is not
 	 *         sandbox or production or the provider certificate file is not readable.
 	 */
-	public function __construct($nEnvironment, $sProviderCertificateFile, \ApnsPHP\Log\LogInterface $oLogger = null)
+	public function __construct($nEnvironment, $sProviderCertificateFile, Log\LogInterface $oLogger = null)
 	{
 		if ($nEnvironment != self::ENVIRONMENT_PRODUCTION && $nEnvironment != self::ENVIRONMENT_SANDBOX) {
 			throw new Exception(
@@ -182,17 +182,17 @@ abstract class AbstractClass
 	 * @throws \ApnsPHP\Exception if Logger is not an instance
 	 *         of \ApnsPHP\Log\LogInterface.
 	 */
-	public function setLogger(\ApnsPHP\Log\LogInterface $logger)
+	public function setLogger(Log\LogInterface $logger)
 	{
 		if (!is_object($logger)) {
 			throw new Exception(
-				"The logger should be an instance of '\ApnsPHP\Log\LogInterface'"
+				"The logger should be an instance of '\\ApnsPHP\\Log\\LogInterface'"
 			);
 		}
-		if (!($logger instanceof \ApnsPHP\Log\LogInterface)) {
+		if (!($logger instanceof Log\LogInterface)) {
 			throw new Exception(
 				"Unable to use an instance of '" . get_class($logger) . "' as logger: " .
-				"a logger must implements \ApnsPHP\Log\LogInterface."
+				"a logger must implements \\ApnsPHP\\Log\\LogInterface."
 			);
 		}
 		$this->_logger = $logger;
@@ -479,7 +479,7 @@ abstract class AbstractClass
 	protected function _log($sMessage)
 	{
 		if (!isset($this->_logger)) {
-			$this->_logger = new \ApnsPHP\Log\Embedded();
+			$this->_logger = new Log\Embedded();
 		}
 		$this->_logger->log($sMessage);
 	}

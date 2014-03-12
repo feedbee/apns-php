@@ -120,7 +120,7 @@ class Push extends AbstractClass
 	 *
 	 * @param \ApnsPHP\Message $message The message.
 	 */
-	public function add(\ApnsPHP\Message $message)
+	public function add(Message $message)
 	{
 		$sMessagePayload = $message->getPayload();
 		$nRecipients = $message->getRecipientsNumber();

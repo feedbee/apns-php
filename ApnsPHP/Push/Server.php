@@ -22,6 +22,9 @@ namespace ApnsPHP\Push;
  * @defgroup ApnsPHP_Push_Server Server
  * @ingroup ApnsPHP_Push
  */
+use ApnsPHP\Exception;
+use ApnsPHP\Message;
+use ApnsPHP\Push;
 
 /**
  * The Push Notification Server Provider.
@@ -32,7 +35,7 @@ namespace ApnsPHP\Push;
  *
  * @ingroup ApnsPHP_Push_Server
  */
-class Server extends \ApnsPHP\Push
+class Server extends Push
 {
 	/**
 	 * @var integer Main loop sleep time in micro seconds.
@@ -223,7 +226,7 @@ class Server extends \ApnsPHP\Push
 				// Child process
 				try {
 					parent::connect();
-				} catch (\ApnsPHP\Exception $e) {
+				} catch (Exception $e) {
 					$this->_log('ERROR: ' . $e->getMessage() . ', exiting...');
 					exit(1);
 				}
@@ -242,7 +245,7 @@ class Server extends \ApnsPHP\Push
 	 *
 	 * @param \ApnsPHP\Message $message The message.
 	 */
-	public function add(\ApnsPHP\Message $message)
+	public function add(Message $message)
 	{
 		static $n = 0;
 		if ($n >= $this->_nProcesses) {
