@@ -33,13 +33,29 @@ namespace ApnsPHP;
  */
 class Push extends AbstractClass
 {
-	const COMMAND_PUSH = 2; /**< @type integer Payload command. */
+	/**
+	 * @var integer Payload command.
+	 */
+	const COMMAND_PUSH = 2;
 
-	const ERROR_RESPONSE_SIZE = 6; /**< @type integer Error-response packet size. */
-	const ERROR_RESPONSE_COMMAND = 8; /**< @type integer Error-response command code. */
+	/**
+	 * @var integer Error-response packet size.
+	 */
+	const ERROR_RESPONSE_SIZE = 6;
 
-	const STATUS_CODE_INTERNAL_ERROR = 999; /**< @type integer Status code for internal error (not Apple). */
+	/**
+	 * @var integer Error-response command code.
+	 */
+	const ERROR_RESPONSE_COMMAND = 8;
 
+	/**
+	 * @var integer Status code for internal error (not Apple).
+	 */
+	const STATUS_CODE_INTERNAL_ERROR = 999;
+
+	/**
+	 * @var array Error-response messages.
+	 */
 	protected $_aErrorResponseMessages = array(
 		0   => 'No errors encountered',
 		1   => 'Processing error',
@@ -51,17 +67,30 @@ class Push extends AbstractClass
 		7   => 'Invalid payload size',
 		8   => 'Invalid token',
 		self::STATUS_CODE_INTERNAL_ERROR => 'Internal error'
-	); /**< @type array Error-response messages. */
+	);
 
-	protected $_nSendRetryTimes = 3; /**< @type integer Send retry times. */
+	/**
+	 * @var integer Send retry times.
+	 */
+	protected $_nSendRetryTimes = 3;
 
+	/**
+	 * @var array Service URLs environments.
+	 */
 	protected $_aServiceURLs = array(
 		'ssl://gateway.push.apple.com:2195', // Production environment
 		'ssl://gateway.sandbox.push.apple.com:2195' // Sandbox environment
-	); /**< @type array Service URLs environments. */
+	);
 
-	protected $_aMessageQueue = array(); /**< @type array Message queue. */
-	protected $_aErrors = array(); /**< @type array Error container. */
+	/**
+	 * @var array Message queue.
+	 */
+	protected $_aMessageQueue = array();
+
+	/**
+	 * @var array Error container.
+	 */
+	protected $_aErrors = array();
 
 	/**
 	 * Set the send retry times value.
@@ -69,7 +98,7 @@ class Push extends AbstractClass
 	 * If the client is unable to send a payload to to the server retries at least
 	 * for this value. The default send retry times is 3.
 	 *
-	 * @param  $nRetryTimes @type integer Send retry times.
+	 * @param integer $nRetryTimes Send retry times.
 	 */
 	public function setSendRetryTimes($nRetryTimes)
 	{
@@ -79,7 +108,7 @@ class Push extends AbstractClass
 	/**
 	 * Get the send retry time value.
 	 *
-	 * @return @type integer Send retry times.
+	 * @return integer Send retry times.
 	 */
 	public function getSendRetryTimes()
 	{
@@ -89,7 +118,7 @@ class Push extends AbstractClass
 	/**
 	 * Adds a message to the message queue.
 	 *
-	 * @param  $message @type \ApnsPHP\Message The message.
+	 * @param \ApnsPHP\Message $message The message.
 	 */
 	public function add(\ApnsPHP\Message $message)
 	{
@@ -222,8 +251,8 @@ class Push extends AbstractClass
 	 * from the message queue and inserted in the Errors container. Use the getErrors()
 	 * method to retrive messages with delivery error(s).
 	 *
-	 * @param  $bEmpty @type boolean @optional Empty message queue.
-	 * @return @type array Array of messages left on the queue.
+	 * @param boolean $bEmpty Empty message queue.
+	 * @return array Array of messages left on the queue.
 	 */
 	public function getQueue($bEmpty = true)
 	{
@@ -238,8 +267,8 @@ class Push extends AbstractClass
 	 * Returns messages not delivered to the end user because one (or more) error
 	 * occurred.
 	 *
-	 * @param  $bEmpty @type boolean @optional Empty message container.
-	 * @return @type array Array of messages not delivered because one or more errors
+	 * @param boolean $bEmpty Empty message container.
+	 * @return array Array of messages not delivered because one or more errors
 	 *         occurred.
 	 */
 	public function getErrors($bEmpty = true)
@@ -256,21 +285,21 @@ class Push extends AbstractClass
 	 *
 	 * @see http://tinyurl.com/ApplePushNotificationBinary
 	 *
-	 * @param  $sDeviceToken @type string The device token.
-	 * @param  $sPayload @type string The JSON-encoded payload.
-	 * @param  $nMessageID @type integer @optional Message unique ID.
-	 * @param  $nExpire @type integer @optional Seconds, starting from now, that
+	 * @param  string $sDeviceToken The device token.
+	 * @param  string $sPayload The JSON-encoded payload.
+	 * @param  integer $nMessageID Message unique ID.
+	 * @param  integer $nExpire Seconds, starting from now, that
 	 *         identifies when the notification is no longer valid and can be discarded.
 	 *         Pass a negative value (-1 for example) to request that APNs not store
 	 *         the notification at all. Default is 86400 * 7, 7 days.
-	 * @param  $nPriority @type integer @optional The notification’s priority.
+	 * @param  integer $nPriority The notification’s priority.
 	 *         Provide one of the following values:
 	 *          - 10 The push message is sent immediately. The push notification must trigger an alert,
 	 *            sound, or badge on the device. It is an error to use this priority for a push that contains
 	 *            only the content-available key.
 	 *          - 5 The push message is sent at a time that conserves power on the device receiving it.
 	 *         Default is 10.
-	 * @return @type string A binary notification.
+	 * @return string A binary notification.
 	 */
 	protected function _getBinaryNotification($sDeviceToken, $sPayload, $nMessageID = 0, $nExpire = 604800, $nPriority = 10)
 	{
@@ -294,8 +323,8 @@ class Push extends AbstractClass
 	/**
 	 * Parses the error message.
 	 *
-	 * @param  $sErrorMessage @type string The Error Message.
-	 * @return @type array Array with command, statusCode and identifier keys.
+	 * @param string $sErrorMessage The Error Message.
+	 * @return array Array with command, statusCode and identifier keys.
 	 */
 	protected function _parseErrorMessage($sErrorMessage)
 	{
@@ -307,7 +336,7 @@ class Push extends AbstractClass
 	 * If the error message is present and valid the error message is returned,
 	 * otherwhise null is returned.
 	 *
-	 * @return @type array|null Return the error message array.
+	 * @return array|null Return the error message array.
 	 */
 	protected function _readErrorMessage()
 	{
@@ -336,12 +365,12 @@ class Push extends AbstractClass
 	/**
 	 * Checks for error message and deletes messages successfully sent from message queue.
 	 *
-	 * @param  $aErrorMessage @type array @optional The error message. It will anyway
+	 * @param  array $aErrorMessage The error message. It will anyway
 	 *         always be read from the main stream. The latest successful message
 	 *         sent is the lowest between this error message and the message that
 	 *         was read from the main stream.
 	 *         @see _readErrorMessage()
-	 * @return @type boolean True if an error was received.
+	 * @return boolean True if an error was received.
 	 */
 	protected function _updateQueue($aErrorMessage = null)
 	{
@@ -382,8 +411,8 @@ class Push extends AbstractClass
 	/**
 	 * Remove a message from the message queue.
 	 *
-	 * @param  $nMessageID @type integer The Message ID.
-	 * @param  $bError @type boolean @optional Insert the message in the Error container.
+	 * @param  integer $nMessageID The Message ID.
+	 * @param  boolean $bError Insert the message in the Error container.
 	 * @throws \ApnsPHP\Push\Exception if the Message ID is not valid or message
 	 *         does not exists.
 	 */

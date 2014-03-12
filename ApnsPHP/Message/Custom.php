@@ -29,10 +29,22 @@ namespace ApnsPHP\Message;
  */
 class Custom extends \ApnsPHP\Message
 {
-	protected $_sActionLocKey; /**< @type string The "View" button title. */
-	protected $_sLocKey; /**< @type string A key to an alert-message string in a Localizable.strings file */
-	protected $_aLocArgs; /**< @type array Variable string values to appear in place of the format specifiers in loc-key. */
-	protected $_sLaunchImage; /**< @type string The filename of an image file in the application bundle. */
+	/**
+	 * @var string The "View" button title.
+	 */
+	protected $_sActionLocKey;
+	/**
+	 * @var string A key to an alert-message string in a Localizable.strings file
+	 */
+	protected $_sLocKey;
+	/**
+	 * @var array Variable string values to appear in place of the format specifiers in loc-key.
+	 */
+	protected $_aLocArgs;
+	/**
+	 * @var string The filename of an image file in the application bundle.
+	 */
+	protected $_sLaunchImage;
 
 	/**
 	 * Set the "View" button title.
@@ -43,7 +55,7 @@ class Custom extends \ApnsPHP\Message
 	 * empty string, the system displays an alert with a single OK button that simply
 	 * dismisses the alert when tapped.
 	 *
-	 * @param  $sActionLocKey @type string @optional The "View" button title, default
+	 * @param  string $sActionLocKey The "View" button title, default
 	 *         empty string.
 	 */
 	public function setActionLocKey($sActionLocKey = '')
@@ -54,7 +66,7 @@ class Custom extends \ApnsPHP\Message
 	/**
 	 * Get the "View" button title.
 	 *
-	 * @return @type string The "View" button title.
+	 * @return string The "View" button title.
 	 */
 	public function getActionLocKey()
 	{
@@ -68,7 +80,7 @@ class Custom extends \ApnsPHP\Message
 	 * The key string can be formatted with %@ and %n$@ specifiers to take the variables
 	 * specified in loc-args.
 	 *
-	 * @param  $sLocKey @type string The alert-message string.
+	 * @param string $sLocKey The alert-message string.
 	 */
 	public function setLocKey($sLocKey)
 	{
@@ -78,7 +90,7 @@ class Custom extends \ApnsPHP\Message
 	/**
 	 * Get the alert-message string in Localizable.strings file.
 	 *
-	 * @return @type string The alert-message string.
+	 * @return string The alert-message string.
 	 */
 	public function getLocKey()
 	{
@@ -89,7 +101,7 @@ class Custom extends \ApnsPHP\Message
 	 * Set the variable string values to appear in place of the format specifiers
 	 * in loc-key.
 	 *
-	 * @param  $aLocArgs @type array The variable string values.
+	 * @param array $aLocArgs The variable string values.
 	 */
 	public function setLocArgs($aLocArgs)
 	{
@@ -100,7 +112,7 @@ class Custom extends \ApnsPHP\Message
 	 * Get the variable string values to appear in place of the format specifiers
 	 * in loc-key.
 	 *
-	 * @return @type string The variable string values.
+	 * @return string The variable string values.
 	 */
 	public function getLocArgs()
 	{
@@ -117,7 +129,7 @@ class Custom extends \ApnsPHP\Message
 	 * key in the application’s Info.plist file, or falls back to Default.png.
 	 * This property was added in iOS 4.0.
 	 *
-	 * @param  $sLaunchImage @type string The filename of an image file.
+	 * @param string $sLaunchImage The filename of an image file.
 	 */
 	public function setLaunchImage($sLaunchImage)
 	{
@@ -127,7 +139,7 @@ class Custom extends \ApnsPHP\Message
 	/**
 	 * Get the filename of an image file in the application bundle.
 	 *
-	 * @return @type string The filename of an image file.
+	 * @return string The filename of an image file.
 	 */
 	public function getLaunchImage()
 	{
@@ -137,7 +149,7 @@ class Custom extends \ApnsPHP\Message
 	/**
 	 * Get the payload dictionary.
 	 *
-	 * @return @type array The payload dictionary.
+	 * @return array The payload dictionary.
 	 */
 	protected function _getPayload()
 	{

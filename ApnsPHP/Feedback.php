@@ -40,30 +40,42 @@ namespace ApnsPHP;
  */
 class Feedback extends AbstractClass
 {
-	const TIME_BINARY_SIZE = 4; /**< @type integer Timestamp binary size in bytes. */
-	const TOKEN_LENGTH_BINARY_SIZE = 2; /**< @type integer Token length binary size in bytes. */
+	/**
+	 * @var integer Timestamp binary size in bytes.
+	 */
+	const TIME_BINARY_SIZE = 4;
+	/**
+	 * @var integer Token length binary size in bytes.
+	 */
+	const TOKEN_LENGTH_BINARY_SIZE = 2;
 
+	/**
+	 * @var array Feedback URLs environments.
+	 */
 	protected $_aServiceURLs = array(
 		'ssl://feedback.push.apple.com:2196', // Production environment
 		'ssl://feedback.sandbox.push.apple.com:2196' // Sandbox environment
-	); /**< @type array Feedback URLs environments. */
+	);
 
-	protected $_aFeedback; /**< @type array Feedback container. */
+	/**
+	 * @var array Feedback container.
+	 */
+	protected $_aFeedback;
 
 	/**
 	 * Receives feedback tuples from Apple Push Notification Service feedback.
 	 *
 	 * Every tuple (array) contains:
-	 * @li @c timestamp indicating when the APNs determined that the application
+	 *  - timestamp indicating when the APNs determined that the application
 	 *     no longer exists on the device. This value represents the seconds since
 	 *     1970, anchored to UTC. You should use the timestamp to determine if the
 	 *     application on the device re-registered with your service since the moment
 	 *     the device token was recorded on the feedback service. If it hasn’t,
 	 *     you should cease sending push notifications to the device.
-	 * @li @c tokenLength The length of the device token (usually 32 bytes).
-	 * @li @c deviceToken The device token.
+	 *  - tokenLength The length of the device token (usually 32 bytes).
+	 *  - deviceToken The device token.
 	 *
-	 * @return @type array Array of feedback tuples (array).
+	 * @return array Array of feedback tuples (array).
 	 */
 	public function receive()
 	{
@@ -109,8 +121,8 @@ class Feedback extends AbstractClass
 	/**
 	 * Parses binary tuples.
 	 *
-	 * @param  $sBinaryTuple @type string A binary tuple to parse.
-	 * @return @type array Array with timestamp, tokenLength and deviceToken keys.
+	 * @param  string $sBinaryTuple A binary tuple to parse.
+	 * @return array Array with timestamp, tokenLength and deviceToken keys.
 	 */
 	protected function _parseBinaryTuple($sBinaryTuple)
 	{

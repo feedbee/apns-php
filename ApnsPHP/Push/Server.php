@@ -34,26 +34,61 @@ namespace ApnsPHP\Push;
  */
 class Server extends \ApnsPHP\Push
 {
-	const MAIN_LOOP_USLEEP = 200000; /**< @type integer Main loop sleep time in micro seconds. */
-	const SHM_SIZE = 524288; /**< @type integer Shared memory size in bytes useful to store message queues. */
-	const SHM_MESSAGES_QUEUE_KEY_START = 1000; /**< @type integer Message queue start identifier for messages. For every process 1 is added to this number. */
-	const SHM_ERROR_MESSAGES_QUEUE_KEY = 999; /**< @type integer Message queue identifier for not delivered messages. */
+	/**
+	 * @var integer Main loop sleep time in micro seconds.
+	 */
+	const MAIN_LOOP_USLEEP = 200000;
 
-	protected $_nProcesses = 3; /**< @type integer The number of processes to start. */
-	protected $_aPids = array(); /**< @type array Array of process PIDs. */
-	protected $_nParentPid; /**< @type integer The parent process id. */
-	protected $_nCurrentProcess; /**< @type integer Cardinal process number (0, 1, 2, ...). */
-	protected $_nRunningProcesses; /**< @type integer The number of running processes. */
+	/**
+	 * @var integer Shared memory size in bytes useful to store message queues.
+	 */
+	const SHM_SIZE = 524288;
 
-	protected $_hShm; /**< @type resource Shared memory. */
-	protected $_hSem; /**< @type resource Semaphore. */
+	/**
+	 * @var integer Message queue start identifier for messages. For every process 1 is added to this number.
+	 */
+	const SHM_MESSAGES_QUEUE_KEY_START = 1000;
+
+	/**
+	 * @var integer Message queue identifier for not delivered messages.
+	 */
+	const SHM_ERROR_MESSAGES_QUEUE_KEY = 999;
+
+	/**
+	 * @var integer The number of processes to start.
+	 */
+	protected $_nProcesses = 3;
+	/**
+	 * @var array Array of process PIDs.
+	 */
+	protected $_aPids = array();
+	/**
+	 * @var integer The parent process id.
+	 */
+	protected $_nParentPid;
+	/**
+	 * @var integer Cardinal process number (0, 1, 2, ...).
+	 */
+	protected $_nCurrentProcess;
+	/**
+	 * @var integer The number of running processes.
+	 */
+	protected $_nRunningProcesses;
+
+	/**
+	 * @var resource Shared memory.
+	 */
+	protected $_hShm;
+	/**
+	 * @var resource Semaphore.
+	 */
+	protected $_hSem;
 
 	/**
 	 * Constructor.
 	 *
-	 * @param  $nEnvironment @type integer Environment.
-	 * @param  $sProviderCertificateFile @type string Provider certificate file
-	 *         with key (Bundled PEM).
+	 * @param  integer $nEnvironment Environment.
+	 * @param  string $sProviderCertificateFile Provider certificate file with key (Bundled PEM).
 	 * @throws \ApnsPHP\Push\Server\Exception if is unable to
 	 *         get Shared Memory Segment or Semaphore ID.
 	 */
@@ -88,14 +123,14 @@ class Server extends \ApnsPHP\Push
 	 * Checks if the server is running and calls signal handlers for pending signals.
 	 *
 	 * Example:
-	 * @code
+	 * <code>
 	 * while ($Server->run()) {
 	 *     // do somethings...
 	 *     usleep(200000);
 	 * }
-	 * @endcode
+	 * </code>
 	 *
-	 * @return @type boolean True if the server is running.
+	 * @return boolean True if the server is running.
 	 */
 	public function run()
 	{
@@ -118,7 +153,7 @@ class Server extends \ApnsPHP\Push
 	 * When a child (not the parent) receive a signal of type TERM, QUIT or INT
 	 * exits from the current process and decreases the current running process number.
 	 *
-	 * @param  $nSignal @type integer Signal number.
+	 * @param integer $nSignal Signal number.
 	 */
 	public function onSignal($nSignal)
 	{
@@ -156,7 +191,7 @@ class Server extends \ApnsPHP\Push
 	/**
 	 * Set the total processes to start, default is 3.
 	 *
-	 * @param  $nProcesses @type integer Processes to start up.
+	 * @param integer $nProcesses Processes to start up.
 	 */
 	public function setProcesses($nProcesses)
 	{
@@ -205,7 +240,7 @@ class Server extends \ApnsPHP\Push
 	 * Messages are added to the queues in a round-robin fashion starting from the
 	 * first process to the last.
 	 *
-	 * @param  $message @type ApnsPHP\Message The message.
+	 * @param \ApnsPHP\Message $message The message.
 	 */
 	public function add(\ApnsPHP\Message $message)
 	{
@@ -228,8 +263,8 @@ class Server extends \ApnsPHP\Push
 	 * from the message queue and inserted in the Errors container. Use the getErrors()
 	 * method to retrive messages with delivery error(s).
 	 *
-	 * @param  $bEmpty @type boolean @optional Empty message queue.
-	 * @return @type array Array of messages left on the queue.
+	 * @param  boolean $bEmpty Empty message queue.
+	 * @return array Array of messages left on the queue.
 	 */
 	public function getQueue($bEmpty = true)
 	{
@@ -249,8 +284,8 @@ class Server extends \ApnsPHP\Push
 	 * Returns messages not delivered to the end user because one (or more) error
 	 * occurred.
 	 *
-	 * @param  $bEmpty @type boolean @optional Empty message container.
-	 * @return @type array Array of messages not delivered because one or more errors
+	 * @param  boolean $bEmpty Empty message container.
+	 * @return array Array of messages not delivered because one or more errors
 	 *         occurred.
 	 */
 	public function getErrors($bEmpty = true)
@@ -306,10 +341,10 @@ class Server extends \ApnsPHP\Push
 	/**
 	 * Returns the queue from the shared memory.
 	 *
-	 * @param  $nQueueKey @type integer The key of the queue stored in the shared
+	 * @param  integer $nQueueKey The key of the queue stored in the shared
 	 *         memory.
-	 * @param  $nProcess @type integer @optional The process cardinal number.
-	 * @return @type array Array of messages from the queue.
+	 * @param  integer $nProcess The process cardinal number.
+	 * @return array Array of messages from the queue.
 	 */
 	protected function _getQueue($nQueueKey, $nProcess = 0)
 	{
@@ -322,12 +357,11 @@ class Server extends \ApnsPHP\Push
 	/**
 	 * Store the queue into the shared memory.
 	 *
-	 * @param  $nQueueKey @type integer The key of the queue to store in the shared
-	 *         memory.
-	 * @param  $nProcess @type integer @optional The process cardinal number.
-	 * @param  $aQueue @type array @optional The queue to store into shared memory.
+	 * @param  integer $nQueueKey The key of the queue to store in the shared memory.
+	 * @param  integer $nProcess The process cardinal number.
+	 * @param  array $aQueue The queue to store into shared memory.
 	 *         The default value is an empty array, useful to empty the queue.
-	 * @return @type boolean True on success, false otherwise.
+	 * @return boolean True on success, false otherwise.
 	 */
 	protected function _setQueue($nQueueKey, $nProcess = 0, $aQueue = array())
 	{

@@ -16,7 +16,7 @@ class File implements LogInterface{
 	/**
 	 * Logs a message.
 	 *
-	 * @param  $sMessage @type string The message.
+	 * @param  string $sMessage The message.
 	 * @throws \ApnsPHP\Log\Exception
 	 */
 	public function log($sMessage)
@@ -30,7 +30,7 @@ class File implements LogInterface{
 	}
 
 	/**
-	 * @param string $file
+	 * @param  string $file
 	 * @throws Exception
 	 */
 	public function setFile($file)

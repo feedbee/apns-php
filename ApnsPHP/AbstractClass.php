@@ -40,40 +40,101 @@ namespace ApnsPHP;
  */
 abstract class AbstractClass
 {
-	const ENVIRONMENT_PRODUCTION = 0; /**< @type integer Production environment. */
-	const ENVIRONMENT_SANDBOX = 1; /**< @type integer Sandbox environment. */
+	/**
+	 * @var integer Production environment.
+	 */
+	const ENVIRONMENT_PRODUCTION = 0;
 
-	const DEVICE_BINARY_SIZE = 32; /**< @type integer Device token length. */
+	/**
+	 * @var integer Sandbox environment.
+	 */
+	const ENVIRONMENT_SANDBOX = 1;
 
-	const WRITE_INTERVAL = 10000; /**< @type integer Default write interval in micro seconds. */
-	const CONNECT_RETRY_INTERVAL = 1000000; /**< @type integer Default connect retry interval in micro seconds. */
-	const SOCKET_SELECT_TIMEOUT = 1000000; /**< @type integer Default socket select timeout in micro seconds. */
+	/**
+	 * @var integer Device token length.
+	 */
+	const DEVICE_BINARY_SIZE = 32;
 
-	protected $_aServiceURLs = array(); /**< @type array Container for service URLs environments. */
+	/**
+	 * @var integer Default write interval in micro seconds.
+	 */
+	const WRITE_INTERVAL = 10000;
 
-	protected $_nEnvironment; /**< @type integer Active environment. */
+	/**
+	 * @var integer Default connect retry interval in micro seconds.
+	 */
+	const CONNECT_RETRY_INTERVAL = 1000000;
 
-	protected $_nConnectTimeout; /**< @type integer Connect timeout in seconds. */
-	protected $_nConnectRetryTimes = 3; /**< @type integer Connect retry times. */
+	/**
+	 * @var integer Default socket select timeout in micro seconds.
+	 */
+	const SOCKET_SELECT_TIMEOUT = 1000000;
 
-	protected $_sProviderCertificateFile; /**< @type string Provider certificate file with key (Bundled PEM). */
-	protected $_sProviderCertificatePassphrase; /**< @type string Provider certificate passphrase. */
-	protected $_sRootCertificationAuthorityFile; /**< @type string Root certification authority file. */
+	/**
+	 * @var array Container for service URLs environments.
+	 */
+	protected $_aServiceURLs = array();
 
-	protected $_nWriteInterval; /**< @type integer Write interval in micro seconds. */
-	protected $_nConnectRetryInterval; /**< @type integer Connect retry interval in micro seconds. */
-	protected $_nSocketSelectTimeout; /**< @type integer Socket select timeout in micro seconds. */
+	/**
+	 * @var@var integer Active environment.
+	 */
+	protected $_nEnvironment;
 
-	protected $_logger; /**< @type \ApnsPHP\Log\LogInterface Logger. */
+	/**
+	 * @var integer Connect timeout in seconds.
+	 */
+	protected $_nConnectTimeout;
 
-	protected $_hSocket; /**< @type resource SSL Socket. */
+	/**
+	 * @var integer Connect retry times.
+	 */
+	protected $_nConnectRetryTimes = 3;
+
+	/**
+	 * @var string Provider certificate file with key (Bundled PEM).
+	 */
+	protected $_sProviderCertificateFile;
+
+	/**
+	 * @var string Provider certificate passphrase.
+	 */
+	protected $_sProviderCertificatePassphrase;
+
+	/**
+	 * @var string Root certification authority file.
+	 */
+	protected $_sRootCertificationAuthorityFile;
+
+	/**
+	 * @var integer Write interval in micro seconds.
+	 */
+	protected $_nWriteInterval;
+
+	/**
+	 * @var integer Connect retry interval in micro seconds.
+	 */
+	protected $_nConnectRetryInterval;
+
+	/**
+	 * @var integer Socket select timeout in micro seconds.
+	 */
+	protected $_nSocketSelectTimeout;
+
+	/**
+	 * @var \ApnsPHP\Log\LogInterface Logger.
+	 */
+	protected $_logger;
+
+	/**
+	 * @var resource SSL Socket.
+	 */
+	protected $_hSocket;
 
 	/**
 	 * Constructor.
 	 *
-	 * @param  $nEnvironment @type integer Environment.
-	 * @param  $sProviderCertificateFile @type string Provider certificate file
-	 *         with key (Bundled PEM).
+	 * @param  integer $nEnvironment Environment.
+	 * @param  string $sProviderCertificateFile Provider certificate file with key (Bundled PEM).
 	 * @param  \ApnsPHP\Log\LogInterface $oLogger
 	 * @throws \ApnsPHP\Exception if the environment is not
 	 *         sandbox or production or the provider certificate file is not readable.
@@ -117,7 +178,7 @@ abstract class AbstractClass
 	 * @see \ApnsPHP\Log\LogInterface
 	 * @see \ApnsPHP\Log\Embedded
 	 *
-	 * @param  $logger @type \ApnsPHP\Log\LogInterface Logger instance.
+	 * @param  \ApnsPHP\Log\LogInterface $logger Logger instance.
 	 * @throws \ApnsPHP\Exception if Logger is not an instance
 	 *         of \ApnsPHP\Log\LogInterface.
 	 */
@@ -140,7 +201,7 @@ abstract class AbstractClass
 	/**
 	 * Get the Logger instance.
 	 *
-	 * @return @type \ApnsPHP\Log\LogInterface Current Logger instance.
+	 * @return \ApnsPHP\Log\LogInterface Current Logger instance.
 	 */
 	public function getLogger()
 	{
@@ -150,8 +211,7 @@ abstract class AbstractClass
 	/**
 	 * Set the Provider Certificate passphrase.
 	 *
-	 * @param  $sProviderCertificatePassphrase @type string Provider Certificate
-	 *         passphrase.
+	 * @param  string $sProviderCertificatePassphrase Provider Certificate passphrase.
 	 */
 	public function setProviderCertificatePassphrase($sProviderCertificatePassphrase)
 	{
@@ -168,7 +228,7 @@ abstract class AbstractClass
 	 * @see http://www.entrust.net/
 	 * @see https://www.entrust.net/downloads/root_index.cfm
 	 *
-	 * @param  $sRootCertificationAuthorityFile @type string Root Certification
+	 * @param  string $sRootCertificationAuthorityFile Root Certification
 	 *         Authority file.
 	 * @throws \ApnsPHP\Exception if Root Certification Authority
 	 *         file is not readable.
@@ -186,7 +246,7 @@ abstract class AbstractClass
 	/**
 	 * Get the Root Certification Authority file path.
 	 *
-	 * @return @type string Current Root Certification Authority file path.
+	 * @return string Current Root Certification Authority file path.
 	 */
 	public function getCertificateAuthority()
 	{
@@ -200,7 +260,7 @@ abstract class AbstractClass
 	 * time interval. To speed up the sending operations, use Zero
 	 * as parameter but some messages may be lost.
 	 *
-	 * @param  $nWriteInterval @type integer Write interval in micro seconds.
+	 * @param integer $nWriteInterval Write interval in micro seconds.
 	 */
 	public function setWriteInterval($nWriteInterval)
 	{
@@ -210,7 +270,7 @@ abstract class AbstractClass
 	/**
 	 * Get the write interval.
 	 *
-	 * @return @type integer Write interval in micro seconds.
+	 * @return integer Write interval in micro seconds.
 	 */
 	public function getWriteInterval()
 	{
@@ -223,7 +283,7 @@ abstract class AbstractClass
 	 * The default connection timeout is the PHP internal value "default_socket_timeout".
 	 * @see http://php.net/manual/en/filesystem.configuration.php
 	 *
-	 * @param  $nTimeout @type integer Connection timeout in seconds.
+	 * @param integer $nTimeout Connection timeout in seconds.
 	 */
 	public function setConnectTimeout($nTimeout)
 	{
@@ -233,7 +293,7 @@ abstract class AbstractClass
 	/**
 	 * Get the connection timeout.
 	 *
-	 * @return @type integer Connection timeout in seconds.
+	 * @return integer Connection timeout in seconds.
 	 */
 	public function getConnectTimeout()
 	{
@@ -246,7 +306,7 @@ abstract class AbstractClass
 	 * If the client is unable to connect to the server retries at least for this
 	 * value. The default connect retry times is 3.
 	 *
-	 * @param  $nRetryTimes @type integer Connect retry times.
+	 * @param integer $nRetryTimes Connect retry times.
 	 */
 	public function setConnectRetryTimes($nRetryTimes)
 	{
@@ -256,7 +316,7 @@ abstract class AbstractClass
 	/**
 	 * Get the connect retry time value.
 	 *
-	 * @return @type integer Connect retry times.
+	 * @return integer Connect retry times.
 	 */
 	public function getConnectRetryTimes()
 	{
@@ -271,7 +331,7 @@ abstract class AbstractClass
 	 *
 	 * @see setConnectRetryTimes
 	 *
-	 * @param  $nRetryInterval @type integer Connect retry interval in micro seconds.
+	 * @param integer $nRetryInterval Connect retry interval in micro seconds.
 	 */
 	public function setConnectRetryInterval($nRetryInterval)
 	{
@@ -281,7 +341,7 @@ abstract class AbstractClass
 	/**
 	 * Get the connect retry interval.
 	 *
-	 * @return @type integer Connect retry interval in micro seconds.
+	 * @return integer Connect retry interval in micro seconds.
 	 */
 	public function getConnectRetryInterval()
 	{
@@ -303,7 +363,7 @@ abstract class AbstractClass
 	 *
 	 * @see http://php.net/stream_select
 	 *
-	 * @param  $nSelectTimeout @type integer Socket select timeout in micro seconds.
+	 * @param integer $nSelectTimeout Socket select timeout in micro seconds.
 	 */
 	public function setSocketSelectTimeout($nSelectTimeout)
 	{
@@ -313,7 +373,7 @@ abstract class AbstractClass
 	/**
 	 * Get the TCP socket select timeout.
 	 *
-	 * @return @type integer Socket select timeout in micro seconds.
+	 * @return integer Socket select timeout in micro seconds.
 	 */
 	public function getSocketSelectTimeout()
 	{
@@ -357,7 +417,7 @@ abstract class AbstractClass
 	/**
 	 * Disconnects from Apple Push Notifications service server.
 	 *
-	 * @return @type boolean True if successful disconnected.
+	 * @return boolean True if successful disconnected.
 	 */
 	public function disconnect()
 	{
@@ -372,7 +432,7 @@ abstract class AbstractClass
 	 * Connects to Apple Push Notification service server.
 	 *
 	 * @throws \ApnsPHP\Exception if is unable to connect.
-	 * @return @type boolean True if successful connected.
+	 * @return boolean True if successful connected.
 	 */
 	protected function _connect()
 	{
@@ -414,7 +474,7 @@ abstract class AbstractClass
 	/**
 	 * Logs a message through the Logger.
 	 *
-	 * @param  $sMessage @type string The message.
+	 * @param string $sMessage The message.
 	 */
 	protected function _log($sMessage)
 	{

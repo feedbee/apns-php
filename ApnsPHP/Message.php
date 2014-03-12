@@ -35,30 +35,69 @@ namespace ApnsPHP;
  */
 class Message
 {
-	const PAYLOAD_MAXIMUM_SIZE = 256; /**< @type integer The maximum size allowed for a notification payload. */
-	const APPLE_RESERVED_NAMESPACE = 'aps'; /**< @type string The Apple-reserved aps namespace. */
+	/**
+	 * @var integer The maximum size allowed for a notification payload.
+	 */
+	const PAYLOAD_MAXIMUM_SIZE = 256;
+	/**
+	 * @var string The Apple-reserved aps namespace.
+	 */
+	const APPLE_RESERVED_NAMESPACE = 'aps';
 
-	protected $_bAutoAdjustLongPayload = true; /**< @type boolean If the JSON payload is longer than maximum allowed size, shorts message text. */
+	/**
+	 * @var boolean If the JSON payload is longer than maximum allowed size, shorts message text.
+	 */
+	protected $_bAutoAdjustLongPayload = true;
 
-	protected $_aDeviceTokens = array(); /**< @type array Recipients device tokens. */
+	/**
+	 * @var array Recipients device tokens.
+	 */
+	protected $_aDeviceTokens = array();
 
-	protected $_sText; /**< @type string Alert message to display to the user. */
-	protected $_nBadge; /**< @type integer Number to badge the application icon with. */
-	protected $_sSound; /**< @type string Sound to play. */
-	protected $_bContentAvailable; /**< @type boolean True to initiates the Newsstand background download. @see http://tinyurl.com/ApplePushNotificationNewsstand */
+	/**
+	 * @var string Alert message to display to the user.
+	 */
+	protected $_sText;
 
-	protected $_aCustomProperties; /**< @type mixed Custom properties container. */
+	/**
+	 * @var integer Number to badge the application icon with.
+	 */
+	protected $_nBadge;
 
-	protected $_nExpiryValue = 604800; /**< @type integer That message will expire in 604800 seconds (86400 * 7, 7 days) if not successful delivered. */
+	/**
+	 * @var string Sound to play.
+	 */
+	protected $_sSound;
 
-	protected $_nPriorityValue = 10; /**< @type integer Message priority value (integer 5 or 10 are valid values for APNs, default is 10). */
+	/**
+	 * @var boolean True to initiates the Newsstand background download. @see http://tinyurl.com/ApplePushNotificationNewsstand
+	 */
+	protected $_bContentAvailable;
 
-	protected $_mCustomIdentifier; /**< @type mixed Custom message identifier. */
+	/**
+	 * @var@var mixed Custom properties container.
+	 */
+	protected $_aCustomProperties;
+
+	/**
+	 * @var integer That message will expire in 604800 seconds (86400 * 7, 7 days) if not successful delivered.
+	 */
+	protected $_nExpiryValue = 604800;
+
+	/**
+	 * @var integer Message priority value (integer 5 or 10 are valid values for APNs, default is 10).
+	 */
+	protected $_nPriorityValue = 10;
+
+	/**
+	 * @var mixed Custom message identifier.
+	 */
+	protected $_mCustomIdentifier;
 
 	/**
 	 * Constructor.
 	 *
-	 * @param  $sDeviceToken @type string @optional Recipients device token.
+	 * @param string $sDeviceToken Recipient's device token.
 	 */
 	public function __construct($sDeviceToken = null)
 	{
@@ -70,7 +109,7 @@ class Message
 	/**
 	 * Add a recipient device token.
 	 *
-	 * @param  $sDeviceToken @type string Recipients device token.
+	 * @param  string $sDeviceToken Recipient's device token.
 	 * @throws \ApnsPHP\Message\Exception if the device token
 	 *         is not well formed.
 	 */
@@ -85,12 +124,22 @@ class Message
 	}
 
 	/**
+	 * Get the number of recipients.
+	 *
+	 * @return integer The number of recipients.
+	 */
+	public function getRecipientsNumber()
+	{
+		return count($this->_aDeviceTokens);
+	}
+
+	/**
 	 * Get a recipient.
 	 *
-	 * @param  $nRecipient @type integer @optional Recipient number to return.
+	 * @param  integer $nRecipient Recipient number to return.
 	 * @throws \ApnsPHP\Message\Exception if no recipient number
 	 *         exists.
-	 * @return @type string The recipient token at index $nRecipient.
+	 * @return string The recipient token at index $nRecipient.
 	 */
 	public function getRecipient($nRecipient = 0)
 	{
@@ -103,19 +152,9 @@ class Message
 	}
 
 	/**
-	 * Get the number of recipients.
-	 *
-	 * @return @type integer Recipient's number.
-	 */
-	public function getRecipientsNumber()
-	{
-		return count($this->_aDeviceTokens);
-	}
-
-	/**
 	 * Get all recipients.
 	 *
-	 * @return @type array Array of all recipients device token.
+	 * @return array Array of all recipients device token.
 	 */
 	public function getRecipients()
 	{
@@ -125,7 +164,8 @@ class Message
 	/**
 	 * Set the alert message to display to the user.
 	 *
-	 * @param  $sText @type string An alert message to display to the user.
+	 * @param string $sText An alert message to display to the user.
+	 * @see ApnsPHP\Message\Custom
 	 */
 	public function setText($sText)
 	{
@@ -135,7 +175,7 @@ class Message
 	/**
 	 * Get the alert message to display to the user.
 	 *
-	 * @return @type string The alert message to display to the user.
+	 * @return string The alert message to display to the user.
 	 */
 	public function getText()
 	{
@@ -145,7 +185,7 @@ class Message
 	/**
 	 * Set the number to badge the application icon with.
 	 *
-	 * @param  $nBadge @type integer A number to badge the application icon with.
+	 * @param  integer $nBadge A number to badge the application icon with.
 	 * @throws \ApnsPHP\Message\Exception if badge is not an
 	 *         integer.
 	 */
@@ -162,7 +202,7 @@ class Message
 	/**
 	 * Get the number to badge the application icon with.
 	 *
-	 * @return @type integer The number to badge the application icon with.
+	 * @return integer The number to badge the application icon with.
 	 */
 	public function getBadge()
 	{
@@ -172,8 +212,7 @@ class Message
 	/**
 	 * Set the sound to play.
 	 *
-	 * @param  $sSound @type string @optional A sound to play ('default sound' is
-	 *         the default sound).
+	 * @param  string $sSound A sound to play ('default' is the default sound).
 	 */
 	public function setSound($sSound = 'default')
 	{
@@ -183,7 +222,7 @@ class Message
 	/**
 	 * Get the sound to play.
 	 *
-	 * @return @type string The sound to play.
+	 * @return string The sound to play.
 	 */
 	public function getSound()
 	{
@@ -194,7 +233,7 @@ class Message
 	 * Initiates the Newsstand background download.
 	 * @see http://tinyurl.com/ApplePushNotificationNewsstand
 	 *
-	 * @param  $bContentAvailable @type boolean True to initiates the Newsstand background download.
+	 * @param  boolean $bContentAvailable True to initiates the Newsstand background download.
 	 * @throws \ApnsPHP\Message\Exception if ContentAvailable is not a
 	 *         boolean.
 	 */
@@ -211,7 +250,7 @@ class Message
 	/**
 	 * Get if should initiates the Newsstand background download.
 	 *
-	 * @return @type boolean Initiates the Newsstand background download property.
+	 * @return boolean Initiates the Newsstand background download property.
 	 */
 	public function getContentAvailable()
 	{
@@ -221,8 +260,8 @@ class Message
 	/**
 	 * Set a custom property.
 	 *
-	 * @param  $sName @type string Custom property name.
-	 * @param  $mValue @type mixed Custom property value.
+	 * @param  string $sName Custom property name.
+	 * @param  mixed $mValue Custom property value.
 	 * @throws \ApnsPHP\Message\Exception if custom property name is not outside
 	 *         the Apple-reserved 'aps' namespace.
 	 */
@@ -241,12 +280,12 @@ class Message
 	 *
 	 * @deprecated Use getCustomPropertyNames() instead.
 	 *
-	 * @return @type string The first custom property name.
+	 * @return string|null The first custom property name.
 	 */
 	public function getCustomPropertyName()
 	{
 		if (!is_array($this->_aCustomProperties)) {
-			return;
+			return null;
 		}
 		$aKeys = array_keys($this->_aCustomProperties);
 		return $aKeys[0];
@@ -257,12 +296,12 @@ class Message
 	 *
 	 * @deprecated Use getCustomProperty() instead.
 	 *
-	 * @return @type mixed The first custom property value.
+	 * @return mixed|null The first custom property value.
 	 */
 	public function getCustomPropertyValue()
 	{
 		if (!is_array($this->_aCustomProperties)) {
-			return;
+			return null;
 		}
 		$aKeys = array_keys($this->_aCustomProperties);
 		return $this->_aCustomProperties[$aKeys[0]];
@@ -271,7 +310,7 @@ class Message
 	/**
 	 * Get all custom properties names.
 	 *
-	 * @return @type array All properties names.
+	 * @return array All properties names.
 	 */
 	public function getCustomPropertyNames()
 	{
@@ -284,10 +323,10 @@ class Message
 	/**
 	 * Get the custom property value.
 	 *
-	 * @param  $sName @type string Custom property name.
+	 * @param  string $sName Custom property name.
 	 * @throws \ApnsPHP\Message\Exception if no property exists with the specified
 	 *         name.
-	 * @return @type string The custom property value.
+	 * @return string The custom property value.
 	 */
 	public function getCustomProperty($sName)
 	{
@@ -302,7 +341,7 @@ class Message
 	/**
 	 * Set the auto-adjust long payload value.
 	 *
-	 * @param  $bAutoAdjust @type boolean If true a long payload is shorted cutting
+	 * @param  boolean $bAutoAdjust If true a long payload is shorted cutting
 	 *         long text value.
 	 */
 	public function setAutoAdjustLongPayload($bAutoAdjust)
@@ -313,7 +352,7 @@ class Message
 	/**
 	 * Get the auto-adjust long payload value.
 	 *
-	 * @return @type boolean The auto-adjust long payload value.
+	 * @return boolean The auto-adjust long payload value.
 	 */
 	public function getAutoAdjustLongPayload()
 	{
@@ -324,7 +363,7 @@ class Message
 	 * PHP Magic Method. When an object is "converted" to a string, JSON-encoded
 	 * payload is returned.
 	 *
-	 * @return @type string JSON-encoded payload.
+	 * @return string JSON-encoded payload.
 	 */
 	public function __toString()
 	{
@@ -339,7 +378,7 @@ class Message
 	/**
 	 * Get the payload dictionary.
 	 *
-	 * @return @type array The payload dictionary.
+	 * @return array The payload dictionary.
 	 */
 	protected function _getPayload()
 	{
@@ -372,7 +411,7 @@ class Message
 	 *
 	 * @throws \ApnsPHP\Message\Exception if payload is longer than maximum allowed
 	 *         size and AutoAdjustLongPayload is disabled.
-	 * @return @type string JSON-encoded payload.
+	 * @return string JSON-encoded payload.
 	 */
 	public function getPayload()
 	{
@@ -422,8 +461,9 @@ class Message
 	/**
 	 * Set the expiry value.
 	 *
-	 * @param  $nExpiryValue @type integer This message will expire in N seconds
+	 * @param  integer $nExpiryValue This message will expire in N seconds
 	 *         if not successful delivered.
+	 * @throws \ApnsPHP\Message\Exception
 	 */
 	public function setExpiry($nExpiryValue)
 	{
@@ -438,7 +478,7 @@ class Message
 	/**
 	 * Get the expiry value.
 	 *
-	 * @return @type integer The expire message value (in seconds).
+	 * @return integer The expire message value (in seconds).
 	 */
 	public function getExpiry()
 	{
@@ -448,7 +488,8 @@ class Message
 	/**
 	 * Set message priority value.
 	 *
-	 * @param  $nPriorityValue @type integer Message priority value (integer 5 or 10 are valid values for APNs).
+	 * @param integer $nPriorityValue Message priority value (integer 5 or 10 are valid values for APNs).
+	 * @throws \ApnsPHP\Message\Exception
 	 */
 	public function setPriority($nPriorityValue)
 	{
@@ -463,7 +504,7 @@ class Message
 	/**
 	 * Get message priority value.
 	 *
-	 * @return @type integer Message priority value (5 or 10 are valid values for APNs)
+	 * @return integer Message priority value (5 or 10 are valid values for APNs)
 	 */
 	public function getPriority()
 	{
@@ -480,7 +521,7 @@ class Message
 	 * This custom identifier, if present, is also used in all status message by
 	 * the ApnsPHP\Push class.
 	 *
-	 * @param  $mCustomIdentifier @type mixed The custom message identifier.
+	 * @param mixed $mCustomIdentifier The custom message identifier.
 	 */
 	public function setCustomIdentifier($mCustomIdentifier)
 	{
@@ -490,7 +531,7 @@ class Message
 	/**
 	 * Get the custom message identifier.
 	 *
-	 * @return @type mixed The custom message identifier.
+	 * @return mixed The custom message identifier.
 	 */
 	public function getCustomIdentifier()
 	{
