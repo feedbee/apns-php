@@ -124,13 +124,13 @@ class Push extends AbstractClass
 	public function send()
 	{
 		if (!$this->_hSocket) {
-			throw new \ApnsPHP\Push\Exception(
+			throw new Push\Exception(
 				'Not connected to Push Notification Service'
 			);
 		}
 
 		if (empty($this->_aMessageQueue)) {
-			throw new \ApnsPHP\Push\Exception(
+			throw new Push\Exception(
 				'No notifications queued to be sent'
 			);
 		}
@@ -390,12 +390,12 @@ class Push extends AbstractClass
 	protected function _removeMessageFromQueue($nMessageID, $bError = false)
 	{
 		if (!is_numeric($nMessageID) || $nMessageID <= 0) {
-			throw new \ApnsPHP\Push\Exception(
+			throw new Push\Exception(
 				'Message ID format is not valid.'
 			);
 		}
 		if (!isset($this->_aMessageQueue[$nMessageID])) {
-			throw new \ApnsPHP\Push\Exception(
+			throw new Push\Exception(
 				"The Message ID {$nMessageID} does not exists."
 			);
 		}

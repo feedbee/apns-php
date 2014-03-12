@@ -22,7 +22,7 @@ class File implements LogInterface{
 	public function log($sMessage)
 	{
 		if (!$this->filePath) {
-			throw new \ApnsPHP\Log\Exception('File not specified');
+			throw new Exception('File not specified');
 		}
 		$dateTime = new \DateTime();
 		$message = sprintf("Date: %s - Message: %s\n", $dateTime->format(\DateTime::ISO8601), $sMessage);
@@ -36,10 +36,10 @@ class File implements LogInterface{
 	public function setFile($file)
 	{
 		if (!is_file($file)) {
-			throw new \ApnsPHP\Log\Exception('File not exists');
+			throw new Exception('File not exists');
 		}
 		if (!is_writable($file)) {
-			throw new \ApnsPHP\Log\Exception('File not writable');
+			throw new Exception('File not writable');
 		}
 		$this->filePath = $file;
 	}

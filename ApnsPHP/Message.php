@@ -77,7 +77,7 @@ class Message
 	public function addRecipient($sDeviceToken)
 	{
 		if (!preg_match('~^[a-f0-9]{64}$~i', $sDeviceToken)) {
-			throw new \ApnsPHP\Message\Exception(
+			throw new Message\Exception(
 				"Invalid device token '{$sDeviceToken}'"
 			);
 		}
@@ -95,7 +95,7 @@ class Message
 	public function getRecipient($nRecipient = 0)
 	{
 		if (!isset($this->_aDeviceTokens[$nRecipient])) {
-			throw new \ApnsPHP\Message\Exception(
+			throw new Message\Exception(
 				"No recipient at index '{$nRecipient}'"
 			);
 		}
@@ -152,7 +152,7 @@ class Message
 	public function setBadge($nBadge)
 	{
 		if (!is_int($nBadge)) {
-			throw new \ApnsPHP\Message\Exception(
+			throw new Message\Exception(
 				"Invalid badge number '{$nBadge}'"
 			);
 		}
@@ -201,7 +201,7 @@ class Message
 	public function setContentAvailable($bContentAvailable = true)
 	{
 		if (!is_bool($bContentAvailable)) {
-			throw new \ApnsPHP\Message\Exception(
+			throw new Message\Exception(
 				"Invalid content-available value '{$bContentAvailable}'"
 			);
 		}
@@ -229,7 +229,7 @@ class Message
 	public function setCustomProperty($sName, $mValue)
 	{
 		if ($sName == self::APPLE_RESERVED_NAMESPACE) {
-			throw new \ApnsPHP\Message\Exception(
+			throw new Message\Exception(
 				"Property name '" . self::APPLE_RESERVED_NAMESPACE . "' can not be used for custom property."
 			);
 		}
@@ -292,7 +292,7 @@ class Message
 	public function getCustomProperty($sName)
 	{
 		if (!array_key_exists($sName, $this->_aCustomProperties)) {
-			throw new \ApnsPHP\Message\Exception(
+			throw new Message\Exception(
 				"No property exists with the specified name '{$sName}'."
 			);
 		}
@@ -330,7 +330,7 @@ class Message
 	{
 		try {
 			$sJSONPayload = $this->getPayload();
-		} catch (\ApnsPHP\Message\Exception $e) {
+		} catch (Message\Exception $e) {
 			$sJSONPayload = '';
 		}
 		return $sJSONPayload;
@@ -403,13 +403,13 @@ class Message
 					while (strlen($this->_sText = mb_substr($this->_sText, 0, --$nTextLen, 'UTF-8')) > $nMaxTextLen);
 					return $this->getPayload();
 				} else {
-					throw new \ApnsPHP\Message\Exception(
+					throw new Message\Exception(
 						"JSON Payload is too long: {$nJSONPayloadLen} bytes. Maximum size is " .
 								self::PAYLOAD_MAXIMUM_SIZE . " bytes. The message text can not be auto-adjusted."
 					);
 				}
 			} else {
-				throw new \ApnsPHP\Message\Exception(
+				throw new Message\Exception(
 					"JSON Payload is too long: {$nJSONPayloadLen} bytes. Maximum size is " .
 							self::PAYLOAD_MAXIMUM_SIZE . " bytes"
 				);
@@ -428,7 +428,7 @@ class Message
 	public function setExpiry($nExpiryValue)
 	{
 		if (!is_int($nExpiryValue)) {
-			throw new \ApnsPHP\Message\Exception(
+			throw new Message\Exception(
 				"Invalid seconds number '{$nExpiryValue}'"
 			);
 		}
@@ -453,7 +453,7 @@ class Message
 	public function setPriority($nPriorityValue)
 	{
 		if (!in_array($nPriorityValue, array(5, 10), true)) {
-			throw new \ApnsPHP\Message\Exception(
+			throw new Message\Exception(
 				"Invalid priority value '{$nPriorityValue}'"
 			);
 		}

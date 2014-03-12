@@ -81,7 +81,7 @@ abstract class AbstractClass
 	public function __construct($nEnvironment, $sProviderCertificateFile, \ApnsPHP\Log\LogInterface $oLogger = null)
 	{
 		if ($nEnvironment != self::ENVIRONMENT_PRODUCTION && $nEnvironment != self::ENVIRONMENT_SANDBOX) {
-			throw new \ApnsPHP\Exception(
+			throw new Exception(
 				"Invalid environment '{$nEnvironment}'"
 			);
 		}
@@ -92,7 +92,7 @@ abstract class AbstractClass
 		}
 
 		if (!is_readable($sProviderCertificateFile)) {
-			throw new \ApnsPHP\Exception(
+			throw new Exception(
 				"Unable to read certificate file '{$sProviderCertificateFile}'"
 			);
 		}
@@ -124,12 +124,12 @@ abstract class AbstractClass
 	public function setLogger(\ApnsPHP\Log\LogInterface $logger)
 	{
 		if (!is_object($logger)) {
-			throw new \ApnsPHP\Exception(
+			throw new Exception(
 				"The logger should be an instance of '\ApnsPHP\Log\LogInterface'"
 			);
 		}
 		if (!($logger instanceof \ApnsPHP\Log\LogInterface)) {
-			throw new \ApnsPHP\Exception(
+			throw new Exception(
 				"Unable to use an instance of '" . get_class($logger) . "' as logger: " .
 				"a logger must implements \ApnsPHP\Log\LogInterface."
 			);
@@ -176,7 +176,7 @@ abstract class AbstractClass
 	public function setRootCertificationAuthority($sRootCertificationAuthorityFile)
 	{
 		if (!is_readable($sRootCertificationAuthorityFile)) {
-			throw new \ApnsPHP\Exception(
+			throw new Exception(
 				"Unable to read Certificate Authority file '{$sRootCertificationAuthorityFile}'"
 			);
 		}
@@ -338,7 +338,7 @@ abstract class AbstractClass
 		while (!$bConnected) {
 			try {
 				$bConnected = $this->_connect();
-			} catch (\ApnsPHP\Exception $e) {
+			} catch (Exception $e) {
 				$this->_log('ERROR: ' . $e->getMessage());
 				if ($nRetry >= $this->_nConnectRetryTimes) {
 					throw $e;
@@ -398,7 +398,7 @@ abstract class AbstractClass
 			$this->_nConnectTimeout, STREAM_CLIENT_CONNECT, $streamContext);
 
 		if (!$this->_hSocket) {
-			throw new \ApnsPHP\Exception(
+			throw new Exception(
 				"Unable to connect to '{$sURL}': {$sError} ({$nError})"
 			);
 		}

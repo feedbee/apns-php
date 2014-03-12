@@ -64,14 +64,14 @@ class Server extends \ApnsPHP\Push
 		$this->_nParentPid = posix_getpid();
 		$this->_hShm = shm_attach(mt_rand(), self::SHM_SIZE);
 		if ($this->_hShm === false) {
-			throw new \ApnsPHP\Push\Server\Exception(
+			throw new Server\Exception(
 				'Unable to get shared memory segment'
 			);
 		}
 
 		$this->_hSem = sem_get(mt_rand());
 		if ($this->_hSem === false) {
-			throw new \ApnsPHP\Push\Server\Exception(
+			throw new Server\Exception(
 				'Unable to get semaphore id'
 			);
 		}
