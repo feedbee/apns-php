@@ -14,6 +14,7 @@
  * to aldo.armiento@gmail.com so we can send you a copy immediately.
  *
  * @author (C) 2010 Aldo Armiento (aldo.armiento@gmail.com)
+ * @author (C) 2014 Valera Leontyev (feedbee@gmail.com)
  */
 
 namespace ApnsPHP;
