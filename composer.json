@@ -6,7 +6,7 @@
     "homepage": "https://github.com/feedbee/apns-php",
     "license": "BSD-3-Clause",
     "authors": [
-    	{
+        {
             "name": "Alberto Simon",
             "email": "asimonf@outlook.com",
             "role": "Developer"
@@ -15,10 +15,10 @@
             "name": "Ivan Ruiz",
             "email": "ivan.ruiz.delatorre@gmail.com"
         },
-	    {
-		    "name": "Igor German",
-		    "email": "iggerman@yandex.com"
-	    },
+        {
+            "name": "Igor German",
+            "email": "iggerman@yandex.com"
+        },
         {
             "name": "Valera Leontyev",
             "email": "feedbee@gmail.com"
