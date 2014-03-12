@@ -15,12 +15,6 @@ namespace ApnsPHP\Log;
  * to aldo.armiento@gmail.com so we can send you a copy immediately.
  *
  * @author (C) 2010 Aldo Armiento (aldo.armiento@gmail.com)
- * @version $Id$
- */
-
-/**
- * @defgroup ApnsPHP_Log Log
- * @ingroup ApplePushNotificationService
  */
 
 /**
@@ -28,8 +22,6 @@ namespace ApnsPHP\Log;
  *
  * Implement the Log Interface and pass the object instance to all
  * ApnsPHP\Abstract based class to use a custom log.
- *
- * @ingroup ApnsPHP_Log
  */
 interface LogInterface
 {

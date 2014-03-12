@@ -15,7 +15,6 @@ namespace ApnsPHP\Message;
  * to aldo.armiento@gmail.com so we can send you a copy immediately.
  *
  * @author (C) 2010 Aldo Armiento (aldo.armiento@gmail.com)
- * @version $Id$
  */
 use ApnsPHP\Message;
 
@@ -25,7 +24,6 @@ use ApnsPHP\Message;
  * The class represents a custom message to be delivered to an end user device.
  * Please refer to Table 3-2 for more information.
  *
- * @ingroup ApnsPHP_Message
  * @see http://tinyurl.com/ApplePushNotificationPayload
  */
 class Custom extends Message

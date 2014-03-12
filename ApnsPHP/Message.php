@@ -16,12 +16,6 @@ namespace ApnsPHP;
  * to aldo.armiento@gmail.com so we can send you a copy immediately.
  *
  * @author (C) 2010 Aldo Armiento (aldo.armiento@gmail.com)
- * @version $Id$
- */
-
-/**
- * @defgroup ApnsPHP_Message Message
- * @ingroup ApplePushNotificationService
  */
 
 /**
@@ -30,7 +24,6 @@ namespace ApnsPHP;
  * The class represents a message to be delivered to an end user device.
  * Notification Service.
  *
- * @ingroup ApnsPHP_Message
  * @see http://tinyurl.com/ApplePushNotificationPayload
  */
 class Message

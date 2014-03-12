@@ -15,13 +15,10 @@ namespace ApnsPHP\Push\Server;
  * to aldo.armiento@gmail.com so we can send you a copy immediately.
  *
  * @author (C) 2010 Aldo Armiento (aldo.armiento@gmail.com)
- * @version $Id$
  */
 
 /**
  * Exception class.
- *
- * @ingroup ApnsPHP_Push_Server
  */
 class Exception extends \ApnsPHP\Push\Exception
 {

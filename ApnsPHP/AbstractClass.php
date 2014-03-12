@@ -15,17 +15,6 @@ namespace ApnsPHP;
  * to aldo.armiento@gmail.com so we can send you a copy immediately.
  *
  * @author (C) 2010 Aldo Armiento (aldo.armiento@gmail.com)
- * @version $Id$
- */
-
-/**
- * @mainpage
- *
- * @li ApnsPHP on Google Code: http://apns-php.googlecode.com/
- */
-
-/**
- * @defgroup ApplePushNotificationService ApnsPHP
  */
 
 /**
@@ -35,7 +24,6 @@ namespace ApnsPHP;
  * This class is responsible for the connection to the Apple Push Notification Service
  * and Feedback.
  *
- * @ingroup ApplePushNotificationService
  * @see http://tinyurl.com/ApplePushNotificationService
  */
 abstract class AbstractClass

@@ -16,12 +16,6 @@ namespace ApnsPHP;
  * to aldo.armiento@gmail.com so we can send you a copy immediately.
  *
  * @author (C) 2010 Aldo Armiento (aldo.armiento@gmail.com)
- * @version $Id$
- */
-
-/**
- * @defgroup ApnsPHP_Feedback Feedback
- * @ingroup ApplePushNotificationService
  */
 
 /**
@@ -35,7 +29,6 @@ namespace ApnsPHP;
  * on the identified devices, a provider should stop sending notifications to these
  * devices.
  *
- * @ingroup ApnsPHP_Feedback
  * @see http://tinyurl.com/ApplePushNotificationFeedback
  */
 class Feedback extends AbstractClass

@@ -15,13 +15,10 @@ namespace ApnsPHP\Message;
  * to aldo.armiento@gmail.com so we can send you a copy immediately.
  *
  * @author (C) 2010 Aldo Armiento (aldo.armiento@gmail.com)
- * @version $Id$
  */
 
 /**
  * Exception class.
- *
- * @ingroup ApnsPHP_Message
  */
 class Exception extends \ApnsPHP\Exception
 {

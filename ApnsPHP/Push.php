@@ -15,12 +15,6 @@ namespace ApnsPHP;
  * to aldo.armiento@gmail.com so we can send you a copy immediately.
  *
  * @author (C) 2010 Aldo Armiento (aldo.armiento@gmail.com)
- * @version $Id$
- */
-
-/**
- * @defgroup \ApnsPHP\Push Push
- * @ingroup ApplePushNotificationService
  */
 
 /**
@@ -28,8 +22,6 @@ namespace ApnsPHP;
  *
  * The class manages a message queue and sends notifications payload to Apple Push
  * Notification Service.
- *
- * @ingroup \ApnsPHP\Push
  */
 class Push extends AbstractClass
 {

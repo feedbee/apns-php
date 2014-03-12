@@ -15,7 +15,6 @@ namespace ApnsPHP\Log;
  * to aldo.armiento@gmail.com so we can send you a copy immediately.
  *
  * @author (C) 2010 Aldo Armiento (aldo.armiento@gmail.com)
- * @version $Id$
  */
 
 /**
@@ -26,8 +25,6 @@ namespace ApnsPHP\Log;
  *
  * This simple logger outputs The Message to standard output prefixed with date,
  * service name (ApplePushNotificationService) and Process ID (PID).
- *
- * @ingroup ApnsPHP_Log
  */
 class Embedded implements LogInterface
 {

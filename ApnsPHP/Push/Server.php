@@ -15,13 +15,8 @@ namespace ApnsPHP\Push;
  * to aldo.armiento@gmail.com so we can send you a copy immediately.
  *
  * @author (C) 2010 Aldo Armiento (aldo.armiento@gmail.com)
- * @version $Id$
  */
 
-/**
- * @defgroup ApnsPHP_Push_Server Server
- * @ingroup ApnsPHP_Push
- */
 use ApnsPHP\Exception;
 use ApnsPHP\Message;
 use ApnsPHP\Push;
@@ -33,7 +28,6 @@ use ApnsPHP\Push;
  * queue. This class is useful to parallelize and speed-up send activities to Apple
  * Push Notification service.
  *
- * @ingroup ApnsPHP_Push_Server
  */
 class Server extends Push
 {
