@@ -1,5 +1,4 @@
 <?php
-namespace ApnsPHP\Push;
 /**
  * @file
  * ApnsPHP\Push\Server class definition.
@@ -16,6 +15,8 @@ namespace ApnsPHP\Push;
  *
  * @author (C) 2010 Aldo Armiento (aldo.armiento@gmail.com)
  */
+
+namespace ApnsPHP\Push;
 
 use ApnsPHP\Exception;
 use ApnsPHP\Message;

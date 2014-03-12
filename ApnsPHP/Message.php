@@ -1,6 +1,4 @@
 <?php
-namespace ApnsPHP;
-
 /**
  * @file
  * ApnsPHP\Message class definition.
@@ -17,6 +15,8 @@ namespace ApnsPHP;
  *
  * @author (C) 2010 Aldo Armiento (aldo.armiento@gmail.com)
  */
+
+namespace ApnsPHP;
 
 /**
  * The Push Notification Message.

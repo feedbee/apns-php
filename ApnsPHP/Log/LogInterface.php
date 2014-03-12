@@ -1,5 +1,4 @@
 <?php
-namespace ApnsPHP\Log;
 /**
  * @file
  * ApnsPHP\Log\Interface interface definition.
@@ -16,6 +15,8 @@ namespace ApnsPHP\Log;
  *
  * @author (C) 2010 Aldo Armiento (aldo.armiento@gmail.com)
  */
+
+namespace ApnsPHP\Log;
 
 /**
  * The Log Interface.

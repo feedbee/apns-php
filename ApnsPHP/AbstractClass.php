@@ -1,5 +1,4 @@
 <?php
-namespace ApnsPHP;
 /**
  * @file
  * \ApnsPHP\Abstract class definition.
@@ -16,6 +15,8 @@ namespace ApnsPHP;
  *
  * @author (C) 2010 Aldo Armiento (aldo.armiento@gmail.com)
  */
+
+namespace ApnsPHP;
 
 /**
  * Abstract class: this is the superclass for all Apple Push Notification Service

@@ -1,5 +1,4 @@
 <?php
-namespace ApnsPHP\Message;
 /**
  * @file
  * ApnsPHP\Message\Exception class definition.
@@ -17,9 +16,9 @@ namespace ApnsPHP\Message;
  * @author (C) 2010 Aldo Armiento (aldo.armiento@gmail.com)
  */
 
+namespace ApnsPHP\Message;
+
 /**
  * Exception class.
  */
-class Exception extends \ApnsPHP\Exception
-{
-}
+class Exception extends \ApnsPHP\Exception {}

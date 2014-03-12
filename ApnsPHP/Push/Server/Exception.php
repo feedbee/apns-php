@@ -1,5 +1,4 @@
 <?php
-namespace ApnsPHP\Push\Server;
 /**
  * @file
  * ApnsPHP\Push\Server\Exception class definition.
@@ -17,9 +16,9 @@ namespace ApnsPHP\Push\Server;
  * @author (C) 2010 Aldo Armiento (aldo.armiento@gmail.com)
  */
 
+namespace ApnsPHP\Push\Server;
+
 /**
  * Exception class.
  */
-class Exception extends \ApnsPHP\Push\Exception
-{
-}
+class Exception extends \ApnsPHP\Push\Exception {}

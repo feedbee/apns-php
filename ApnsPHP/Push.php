@@ -1,5 +1,4 @@
 <?php
-namespace ApnsPHP;
 /**
  * @file
  * \ApnsPHP\Push class definition.
@@ -16,6 +15,8 @@ namespace ApnsPHP;
  *
  * @author (C) 2010 Aldo Armiento (aldo.armiento@gmail.com)
  */
+
+namespace ApnsPHP;
 
 /**
  * The Push Notification Provider.
@@ -241,7 +242,7 @@ class Push extends AbstractClass
 	 *
 	 * When a message is successful sent or reached the maximum retry time is removed
 	 * from the message queue and inserted in the Errors container. Use the getErrors()
-	 * method to retrive messages with delivery error(s).
+	 * method to retrieve messages with delivery error(s).
 	 *
 	 * @param boolean $bEmpty Empty message queue.
 	 * @return array Array of messages left on the queue.
@@ -326,7 +327,7 @@ class Push extends AbstractClass
 	/**
 	 * Reads an error message (if present) from the main stream.
 	 * If the error message is present and valid the error message is returned,
-	 * otherwhise null is returned.
+	 * otherwise null is returned.
 	 *
 	 * @return array|null Return the error message array.
 	 */
