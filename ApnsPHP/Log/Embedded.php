@@ -2,7 +2,7 @@
 namespace ApnsPHP\Log;
 /**
  * @file
- * ApnsPHP_Log_Embedded class definition.
+ * ApnsPHP\Log\Embedded class definition.
  *
  * LICENSE
  *
@@ -22,7 +22,7 @@ namespace ApnsPHP\Log;
  * A simple logger.
  *
  * This simple logger implements the Log Interface and is the default logger for
- * all ApnsPHP_Abstract based class.
+ * all ApnsPHP\Abstract based class.
  *
  * This simple logger outputs The Message to standard output prefixed with date,
  * service name (ApplePushNotificationService) and Process ID (PID).

@@ -3,7 +3,7 @@ namespace ApnsPHP;
 
 /**
  * @file
- * ApnsPHP_Message class definition.
+ * ApnsPHP\Message class definition.
  *
  * LICENSE
  *
@@ -478,7 +478,7 @@ class Message
 	 * can be retrieved in case of error using the getCustomIdentifier()
 	 * method of an entry retrieved by the getErrors() method.
 	 * This custom identifier, if present, is also used in all status message by
-	 * the ApnsPHP_Push class.
+	 * the ApnsPHP\Push class.
 	 *
 	 * @param  $mCustomIdentifier @type mixed The custom message identifier.
 	 */

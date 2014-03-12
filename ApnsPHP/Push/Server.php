@@ -2,7 +2,7 @@
 namespace ApnsPHP\Push;
 /**
  * @file
- * ApnsPHP_Push_Server class definition.
+ * ApnsPHP\Push\Server class definition.
  *
  * LICENSE
  *
@@ -205,7 +205,7 @@ class Server extends \ApnsPHP\Push
 	 * Messages are added to the queues in a round-robin fashion starting from the
 	 * first process to the last.
 	 *
-	 * @param  $message @type ApnsPHP_Message The message.
+	 * @param  $message @type ApnsPHP\Message The message.
 	 */
 	public function add(\ApnsPHP\Message $message)
 	{
@@ -269,7 +269,7 @@ class Server extends \ApnsPHP\Push
 	 *
 	 * During the main loop: the per-process error queue is read and the common error message
 	 * container is populated; the per-process message queue is spooled (message from
-	 * this queue is added to ApnsPHP_Push queue and delivered).
+	 * this queue is added to ApnsPHP\Push queue and delivered).
 	 */
 	protected function _mainLoop()
 	{

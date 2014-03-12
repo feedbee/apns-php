@@ -2,7 +2,7 @@
 namespace ApnsPHP\Log;
 /**
  * @file
- * ApnsPHP_Log_Interface interface definition.
+ * ApnsPHP\Log\Interface interface definition.
  *
  * LICENSE
  *
@@ -27,7 +27,7 @@ namespace ApnsPHP\Log;
  * The Log Interface.
  *
  * Implement the Log Interface and pass the object instance to all
- * ApnsPHP_Abstract based class to use a custom log.
+ * ApnsPHP\Abstract based class to use a custom log.
  *
  * @ingroup ApnsPHP_Log
  */

@@ -2,7 +2,7 @@
 namespace ApnsPHP\Message;
 /**
  * @file
- * ApnsPHP_Message_Custom class definition.
+ * ApnsPHP\Message\Custom class definition.
  *
  * LICENSE
  *

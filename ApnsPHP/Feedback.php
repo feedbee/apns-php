@@ -3,7 +3,7 @@ namespace ApnsPHP;
 
 /**
  * @file
- * ApnsPHP_Feedback class definition.
+ * ApnsPHP\Feedback class definition.
  *
  * LICENSE
  *

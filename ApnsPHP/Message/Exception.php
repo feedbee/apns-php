@@ -2,7 +2,7 @@
 namespace ApnsPHP\Message;
 /**
  * @file
- * ApnsPHP_Message_Exception class definition.
+ * ApnsPHP\Message\Exception class definition.
  *
  * LICENSE
  *

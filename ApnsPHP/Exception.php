@@ -2,7 +2,7 @@
 namespace ApnsPHP;
 /**
  * @file
- * ApnsPHP_Exception class definition.
+ * ApnsPHP\Exception class definition.
  *
  * LICENSE
  *

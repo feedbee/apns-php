@@ -2,7 +2,7 @@
 namespace ApnsPHP\Push\Server;
 /**
  * @file
- * ApnsPHP_Push_Server_Exception class definition.
+ * ApnsPHP\Push\Server\Exception class definition.
  *
  * LICENSE
  *
