@@ -65,7 +65,7 @@ abstract class AbstractClass
 	protected $_aServiceURLs = array();
 
 	/**
-	 * @var@var integer Active environment.
+	 * @var integer Active environment.
 	 */
 	protected $_nEnvironment;
 

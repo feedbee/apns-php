@@ -68,7 +68,7 @@ class Message
 	protected $_bContentAvailable;
 
 	/**
-	 * @var@var mixed Custom properties container.
+	 * @var mixed Custom properties container.
 	 */
 	protected $_aCustomProperties;
 
