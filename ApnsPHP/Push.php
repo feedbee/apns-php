@@ -146,6 +146,7 @@ class Push extends AbstractClass
 					pcntl_signal_dispatch();
 				}
 
+				/** @var \ApnsPHP\Message $message */
 				$message = $aMessage['MESSAGE'];
 				$sCustomIdentifier = (string)$message->getCustomIdentifier();
 				$sCustomIdentifier = sprintf('[custom identifier: %s]', empty($sCustomIdentifier) ? 'unset' : $sCustomIdentifier);
@@ -312,17 +313,17 @@ class Push extends AbstractClass
 	{
 		$sErrorResponse = @fread($this->_hSocket, self::ERROR_RESPONSE_SIZE);
 		if ($sErrorResponse === false || strlen($sErrorResponse) != self::ERROR_RESPONSE_SIZE) {
-			return;
+			return null;
 		}
 		$aErrorResponse = $this->_parseErrorMessage($sErrorResponse);
 		if (!is_array($aErrorResponse) || empty($aErrorResponse)) {
-			return;
+			return null;
 		}
 		if (!isset($aErrorResponse['command'], $aErrorResponse['statusCode'], $aErrorResponse['identifier'])) {
-			return;
+			return null;
 		}
 		if ($aErrorResponse['command'] != self::ERROR_RESPONSE_COMMAND) {
-			return;
+			return null;
 		}
 		$aErrorResponse['time'] = time();
 		$aErrorResponse['statusMessage'] = 'None (unknown)';
